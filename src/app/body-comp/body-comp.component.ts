@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {  Observable } from 'rxjs';
 
 @Component({
   selector: 'app-body-comp',
@@ -6,45 +8,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body-comp.component.scss']
 })
 export class BodyCompComponent implements OnInit {
+  readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/movie/all';
 
-coverConfig = [
-  {
-    "filmNAme": "Avater",
-    "coverImg": "../../assets/image/film-cover/film2.png"
-  }, 
-  {
-    "filmNAme": "Avater1",
-    "coverImg": "../../assets/image/film-cover/film2.png"
-  },
-  {
-    "filmNAme": "Avater2",
-    "coverImg": "../../assets/image/film-cover/film1.png"
-  },
-  {
-    "filmNAme": "Avater3",
-    "coverImg": "../../assets/image/film-cover/film2.png"
-  },{
-    "filmNAme": "Avater4",
-    "coverImg": "../../assets/image/film-cover/film1.png"
-  },{
-    "filmNAme": "Avater5",
-    "coverImg": "../../assets/image/film-cover/film1.png"
-  }
-];
+  datas = new Array<any>();
+  testArray = [];
 
-configHelp: any = {};
+  test: any;
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/xml',
+      'Authorization': 'ApiKey MVVYeGwzOEJ2WDF0QmJua3hhYWw6Z2piVVFoMUFRT0NxS2k5RlhXdzdPQQ=='
+    })
+  };
 
-constructor() { 
-  console.log(this.coverConfig[3].coverImg);
-  for (var i = 0; i < this.configHelp.length; i++) {
-    this.configHelp[this.coverConfig[i].filmNAme] = {
-      "name": this.coverConfig[i].filmNAme,
-      "img" : this.coverConfig[i].coverImg
-    }
-
-  }
+  constructor(private http: HttpClient) { 
+    
+   this.getPost();
+      
 }
 
+sendGet(): Observable<any> {
+  return this.http.get<any>(this.URL, this.httpOptions);
+}
+
+getPost() {    
+  this.sendGet().subscribe(data => {
+    console.log("Test 1:");
+    this.test = data[0];
+  });
+}
 
   ngOnInit(): void {
   }

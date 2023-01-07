@@ -32,7 +32,6 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
-    $Env:CHROME_BIN = "C:\Program Files\Google\Chrome\Application\chrome.exe",
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,

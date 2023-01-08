@@ -12,6 +12,7 @@ import { PopUpComponent } from '../pop-up/pop-up.component';
 export class BodyCompComponent implements OnInit {
   readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/movie/all';
 
+
   datas = new Array<any>();
   testArray = [];
 
@@ -101,6 +102,8 @@ export class BodyCompComponent implements OnInit {
       
 }
 
+
+
 sendGet(): Observable<any> {
   return this.http.get<any>(this.URL, this.httpOptions);
 }
@@ -114,7 +117,13 @@ getPost() {
 
 getID(num: number) {
   this.idNumber = this.film[num].id; 
+  console.log("Erste Aufruf: " + this.idNumber);
 }
+
+public getIDNumber() {
+  return this.idNumber;
+}
+
 openDialog() {
   
   this.dialogRef.open(PopUpComponent, {
@@ -124,6 +133,9 @@ openDialog() {
     }
   });
 }
+
+
+
 
 
   ngOnInit(): void {

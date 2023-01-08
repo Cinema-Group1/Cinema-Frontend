@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { BodyCompComponent } from '../body-comp/body-comp.component';
 
 @Component({
   selector: 'app-pop-up',
@@ -19,6 +20,7 @@ export class PopUpComponent implements OnInit {
   filmDescription: any;
 
   filmEvent = [];
+  dialogRef: any;
 
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private router: Router) {
@@ -39,9 +41,16 @@ export class PopUpComponent implements OnInit {
 
   navigate() {
   
-    this.display = false;
-    this.router.navigateByUrl('/booking');
+    this.router.navigate(['/booking'], {state: {data: {
+      filmid: this.filmID,
+      filmArray: this.filmArray
+    }}});
+    this.dialogRef.close();
+  }
+
+  closeDialog() {
   
+    
   }
 
   ngOnInit(): void {

@@ -52,4 +52,4 @@ jobs:
           app-name: 'Cinema-Frontend-group1'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_097843A59C89409F9A9F6825DE22B76A }}
-          package: .
+          package: .dist/cinema-frontend

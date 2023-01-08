@@ -57,4 +57,4 @@ jobs:
         with:
           app-name: 'Cinema-Frontend-group1'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_321C4690B58546B1A00D85A06C63B51C }}
-          package: ./dist/cinema-frontend-group1
+          package: .

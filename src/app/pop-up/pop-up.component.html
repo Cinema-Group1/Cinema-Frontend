@@ -1,0 +1,33 @@
+
+<div class="main-container">
+  
+    <div class="main-wrapper">
+        <div class="image-wrapper">
+            <img src="{{filmPath}}" alt="" class="img-f">
+
+        </div>
+
+        <div class="text-wrapper">
+            <div class="title-wrapper">
+                <h2>{{filmTitle}}</h2>
+            </div>
+            <div class="description-wrapper">
+                <p>{{filmDescription}}</p>
+            </div>
+
+            <div class="event-wrapper">
+                <h3>Heutige Veranstaltungen:</h3>
+                <div class="btn-container">
+
+                    <div *ngFor="let time of filmEvent; let i = index">
+                        <div class="btn-wrapper">
+                            <button> <a href="google.de">  {{time}} Uhr </a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

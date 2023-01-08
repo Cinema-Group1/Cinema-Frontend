@@ -11,15 +11,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { BodyCompComponent } from './body-comp/body-comp.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 
 import { HttpClientModule } from '@angular/common/http';
+import { PopUpComponent } from './pop-up/pop-up.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    BodyCompComponent
+    BodyCompComponent,
+    PopUpComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

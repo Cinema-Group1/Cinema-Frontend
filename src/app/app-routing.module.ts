@@ -1,10 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BodyCompComponent } from './body-comp/body-comp.component';
+import { BookingComponent } from './booking/booking.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: 'booking', component: BookingComponent},
+  {path: 'home', component: NavbarComponent},
+  {path: 'body', component: BodyCompComponent},
+  { path: '',  redirectTo: '/home', pathMatch: 'full' }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+
+ }

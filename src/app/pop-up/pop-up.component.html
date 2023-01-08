@@ -1,7 +1,9 @@
+<div *ngIf="display">
 
-<div class="main-container">
+    
+    <div class="main-container">
   
-    <div class="main-wrapper">
+        <div class="main-wrapper">
         <div class="image-wrapper">
             <img src="{{filmPath}}" alt="" class="img-f">
 
@@ -21,7 +23,7 @@
 
                     <div *ngFor="let time of filmEvent; let i = index">
                         <div class="btn-wrapper">
-                            <button> <a routerLink="/parent/booking">  {{time}} Uhr </a></button>
+                            <button (click)="navigate()"> {{time}} Uhr</button>
                         </div>
                     </div>
                 </div>
@@ -31,3 +33,5 @@
 
 </div>
 
+
+</div>

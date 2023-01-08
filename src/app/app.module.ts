@@ -17,13 +17,15 @@ import { MatDialogModule } from '@angular/material/dialog';
 
 import { HttpClientModule } from '@angular/common/http';
 import { PopUpComponent } from './pop-up/pop-up.component';
+import { BookingComponent } from './booking/booking.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     BodyCompComponent,
-    PopUpComponent
+    PopUpComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

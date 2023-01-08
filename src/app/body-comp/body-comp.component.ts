@@ -80,7 +80,7 @@ export class BodyCompComponent implements OnInit {
         },
          {"path": "../../assets/image/film-cover/film8.png",
           "id": 7 ,
-          "description": "Nachdem er in den 70er Jahren erstmals Kontakt mit der Geheimorganisation Monarch hatte, lebt Riesenaffe Kong weiterhin auf Skull Island, mitllerweile betreut von der Wissenschaftlerin Ilene Andrews (Rebecca Hall). Kong hat sich mit Ilenes gehörloser Adoptivtochter Jia (Kaylee Hottle) angefreundet, doch dann soll er von seiner Insel weggebracht werden, um die Welt zu retten: Denn unterdessen hat Godzilla damit angefangen, scheinbar willkürlich Forschungseinrichtungen überall auf der Welt anzugreifen. Um die Bedrohung durch Godzilla und die anderen Titanen zu beseitigen, hat der Konzern Apex nämlich eine neue Technologie entwickelt, doch um diese neue Waffe in Betrieb nehmen zu können, braucht Apex-Boss Walter Simmons (Demián Bichir) eine Energiequelle, die im hohlen Kern der Erde verborgen ist, dem geheimen Lebensort der Titanen. Kong soll Apex dorthin führen, doch unterwegs wird das Transportschiff von Godzilla angegriffen...",
+          "description": "langer text",
           "title": "Godzilla VS Kong",
           "eventTime": [
             "21:00","22:00"

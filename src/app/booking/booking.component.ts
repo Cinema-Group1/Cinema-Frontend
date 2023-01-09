@@ -14,26 +14,20 @@ import { BodyCompComponent } from '../body-comp/body-comp.component';
   providers: [PopUpComponent]
 })
 export class BookingComponent implements OnInit {
-  readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/seat/all';
-
+  
   message: any;
 
   seats: any = [];
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'ApiKey MVVYeGwzOEJ2WDF0QmJua3hhYWw6Z2piVVFoMUFRT0NxS2k5RlhXdzdPQQ=='
-    })
-  };
+  
   filmTitle: any;
   filmDescription: any;
   filmPath: any;
 
   filmEvent = [];
 
-  constructor(private http: HttpClient) { 
-    this.getPost();
+  constructor() { 
+  
     
     
 
@@ -51,19 +45,7 @@ export class BookingComponent implements OnInit {
     
   }
 
-  sendGet(): Observable<any> {
-    return this.http.get<any>(this.URL, this.httpOptions);
-  }
-  
-  getPost() {    
-    this.sendGet().subscribe(data => {
-    
-      for(let i = 0; i < data.length; i++) {
-        this.seats[i] = data[i];
-      }
-
-    });
-  }
+ 
 
   ngOnInit(): void {
     

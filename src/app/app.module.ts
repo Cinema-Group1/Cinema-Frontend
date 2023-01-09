@@ -18,6 +18,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { PopUpComponent } from './pop-up/pop-up.component';
 import { BookingComponent } from './booking/booking.component';
+import { CinemaSeatComponent } from './cinema-seat/cinema-seat.component';
+import { EndBookingComponent } from './end-booking/end-booking.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { BookingComponent } from './booking/booking.component';
     NavbarComponent,
     BodyCompComponent,
     PopUpComponent,
-    BookingComponent
+    BookingComponent,
+    CinemaSeatComponent,
+    EndBookingComponent
   ],
   imports: [
     BrowserModule,

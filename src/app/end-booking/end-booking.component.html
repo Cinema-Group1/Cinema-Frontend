@@ -1,0 +1,19 @@
+<div class="main-container">
+    <div class="main-wrapper">
+        
+        <div class="title-wrapper">
+            <div class="h2">Vielen Dank für Ihre Buchung!</div>
+        </div>
+    
+        <div class="text-wrapper">
+           <p> Sie haben die Plätze:  </p>
+            <div *ngFor="let temp of selectedSeats; let i = index" >
+                <span>
+                    {{temp}}             
+                   </span>
+            </div>
+
+         </div>
+
+    </div>
+</div>

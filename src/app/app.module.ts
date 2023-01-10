@@ -12,7 +12,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { BodyCompComponent } from './body-comp/body-comp.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 import { HttpClientModule } from '@angular/common/http';
@@ -39,7 +39,8 @@ import { EndBookingComponent } from './end-booking/end-booking.component';
     MatToolbarModule,
     MatIconModule,
     HttpClientModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

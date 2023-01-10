@@ -134,8 +134,6 @@ sendPost() {
 
 
   getRowsOfCinema = () => {
-
-    
   }
 
   seatClicked = (seatPos: string) => {

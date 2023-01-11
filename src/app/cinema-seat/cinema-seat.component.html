@@ -1,7 +1,7 @@
 <div class="leinwand">Leinwand</div>
-<div class="cinemaPlan" *ngFor="let row of rows">
-    <span class="row">{{row}}</span>
-    <span *ngFor="let column of columns" (click)="seatClicked(row + column)" [ngSwitch]="getSeatState(row + column)">
+<div class="cinemaPlan" *ngFor="let row of seatsLine">
+    <span class="row">{{ row }}</span>
+    <span *ngFor="let column of seatsNumber" (click)="seatClicked(row + column)" [ngSwitch]="getSeatState(row + column)">
     <button class="cinemaSeatSelected" *ngSwitchCase="'selected'" mat-icon-button>
       <mat-icon class="material-icons">event_seat</mat-icon>
     </button>
@@ -11,10 +11,12 @@
     <button class="cinemaSeat" *ngSwitchDefault mat-icon-button>
       <mat-icon class="material-icons">event_seat</mat-icon>
     </button>
-    </span>
+  </span>
 </div>
 <div>
-    <button (click)="navigate(); sendPost()" class="btn">Kaufvorgang Abschließen</button>
+    <button (click)="navigate(); sendPost()" class="btn">
+    Kaufvorgang Abschließen
+  </button>
 </div>
 
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />

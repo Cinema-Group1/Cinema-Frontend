@@ -1,33 +1,35 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {  Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { BodyCompComponent } from '../body-comp/body-comp.component';
 import { CinemaSeatComponent } from '../cinema-seat/cinema-seat.component';
-
-
 
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss'],
-  providers: [PopUpComponent]
+  providers: [PopUpComponent],
 })
-
 export class BookingComponent implements OnInit {
-  
-  tarif = [{
-    "bezeichnung": "Erwachsenen",
-    "preis": "13.49€"
-  }, {
-    "bezeichnung": "Student",
-    "preis": "8.99€"
-  }, {
-    "bezeichnung": "Kinder",
-    "preis": "4.99€"
-  }];
+  tarif = [
+    {
+      bezeichnung: 'Erwachsenen',
+      preis: '13.49€',
+    },
+    {
+      bezeichnung: 'Student',
+      preis: '8.99€',
+    },
+    {
+      bezeichnung: 'Kinder',
+      preis: '4.99€',
+    },
+  ];
 
+  readonly URL: string =
+    'https://cinema-backend-group1.azurewebsites.net/showing/all';
   price: any;
 
   selectedTarif: any;
@@ -36,51 +38,67 @@ export class BookingComponent implements OnInit {
 
   seats: any = [];
 
-  
+  showingTitle: any;
+  filmId: any;
   filmTitle: any;
   filmDescription: any;
   filmPath: any;
+  filmLength: any;
+  filmYear: any;
+  filmGenre: any;
 
   filmEvent = [];
-
-
-  constructor() { 
-  
-  
-
-    for(let i = 0; i < history.state.data.filmArray.length; i++) {
-      if(history.state.data.filmArray[i].id == history.state.data.filmid) {
-        this.filmPath = history.state.data.filmArray[i].path;
-        this.filmTitle = history.state.data.filmArray[i].title;
-        this.filmDescription = history.state.data.filmArray[i].description;
-        this.filmEvent = history.state.data.filmArray[i].eventTime;
-        
-      }
-    }
-
-    console.log(this.filmTitle );
-    
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization:
+        'ApiKey MVVYeGwzOEJ2WDF0QmJua3hhYWw6Z2piVVFoMUFRT0NxS2k5RlhXdzdPQQ==',
+    }),
+  };
+  private routeSub: Subscription = new Subscription();
+  constructor(private route: ActivatedRoute, private http: HttpClient) {
+    this.getPost();
   }
 
   getPrice() {
-    
-    for(let i = 0; i < this.tarif.length; i++) {
-
-      if(this.selectedTarif == this.tarif[i].bezeichnung) {
+    for (let i = 0; i < this.tarif.length; i++) {
+      if (this.selectedTarif == this.tarif[i].bezeichnung) {
         this.price = this.tarif[i].preis;
       }
-      }
-      return this.price;
+    }
+    return this.price;
   }
 
-  selectChangeHandler (event: any) {
+  selectChangeHandler(event: any) {
     //update the ui
     this.selectedTarif = event.target.value;
     console.log(this.selectedTarif.preis);
   }
 
-  ngOnInit(): void {
-    
+  sendGet(): Observable<any> {
+    return this.http.get<any>(this.URL, this.httpOptions);
   }
 
+  getPost() {
+    this.sendGet().subscribe((data) => {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].id === parseInt(this.filmId)) {
+          this.showingTitle = data[i].title + ':';
+          this.filmTitle = data[i].movie.title;
+          this.filmDescription = data[i].movie.description;
+          this.filmPath = data[i].movie.imagePath;
+          this.filmLength = data[i].movie.length;
+          this.filmYear = new Date(data[i].movie.releasedDate).getFullYear();
+          this.filmGenre = data[i].movie.genre.name;
+          break;
+        }
+      }
+    });
+  }
+
+  ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe((params) => {
+      this.filmId = params['id'];
+    });
+  }
 }

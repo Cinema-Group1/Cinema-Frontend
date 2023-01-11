@@ -1,52 +1,57 @@
-
 <div class="cont">
-
     <div class="main-container">
-        
         <div class="main-wrapper">
             <div class="index-wrapper">
-
                 <div class="cover-wrapper">
-                    <img src="{{filmPath}}" alt="" class="img-f">
+                    <img src="{{ filmPath }}" alt="" class="img-f" />
                 </div>
-                
+
                 <div class="description-wrapper">
                     <div class="title-wrapper">
-                        <h2>{{filmTitle}}</h2>
+                        <h2>{{ showingTitle }} {{ filmTitle }}</h2>
                     </div>
                     <div class="info-wrapper">
                         <ul class="head-list">
-                            <li>Filmlänge: <span> 123 Minuten</span> </li>
-                            <li>Produktionsjahr: <span> </span></li>
-                            <li>Genre: <span> </span></li>
-                            <li>FSK: <span> </span></li>
+                            <li>
+                                Filmlänge: <span>{{ filmLength }} Minuten</span>
+                            </li>
+                            <li>
+                                Produktionsjahr: <span> {{ filmYear }} </span>
+                            </li>
+                            <li>
+                                Genre: <span> {{ filmGenre }}</span>
+                            </li>
                         </ul>
                     </div>
                     <div class="select-wrapper">
                         <div class="select-ticketart">
-
                             <label for="kategorie">Wähle deinen Tarif aus:</label>
                             <select (change)="selectChangeHandler($event); getPrice()" name="kategorie" id="kategorie" class="select">
-                                <option *ngFor="let tarifen of tarif; let i = index" class="opt" value="{{tarifen.bezeichnung}}"> {{tarifen.bezeichnung}} - {{tarifen.preis}} </option>
+                                <option *ngFor="let tarifen of tarif; let i = index" class="opt"
+                                    value="{{ tarifen.bezeichnung }}">
+                                    {{ tarifen.bezeichnung }} - {{ tarifen.preis }}
+                                </option>
                             </select>
                         </div>
                     </div>
                     <div *ngIf="selectedTarif" class="booking-inf-wrapper">
                         <div class="wrapper">
                             <h3>Deine Buchungsinformationen:</h3>
-                            <p>Sie haben den <span style="color: aquamarine;">  {{selectedTarif}} </span> Tarif ausgewählt!</p>
-                            <p>Preis: <span style="color: #4ec300;"> {{price}}</span> </p>
+                            <p>
+                                Sie haben den
+                                <span style="color: aquamarine"> {{ selectedTarif }} </span> Tarif ausgewählt!
+                            </p>
+                            <p>
+                                Preis: <span style="color: #4ec300"> {{ price }}</span>
+                            </p>
                         </div>
-                        
                     </div>
                 </div>
             </div>
 
             <div class="line"></div>
 
-        
             <app-cinema-seat></app-cinema-seat>
         </div>
-
+    </div>
 </div>
-</div>  

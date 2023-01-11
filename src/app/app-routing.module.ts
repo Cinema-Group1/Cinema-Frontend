@@ -6,7 +6,7 @@ import { EndBookingComponent } from './end-booking/end-booking.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 const routes: Routes = [
-  {path: 'booking', component: BookingComponent},
+  {path: 'booking/:id', component: BookingComponent},
   {path: 'home', component: NavbarComponent},
   {path: 'body', component: BodyCompComponent},
   {path: 'end-booking', component: EndBookingComponent},

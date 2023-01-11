@@ -1,22 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {  Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
+import { getMatFormFieldMissingControlError } from '@angular/material/form-field';
+import { getLocaleTimeFormat } from '@angular/common';
 
 @Component({
   selector: 'app-body-comp',
   templateUrl: './body-comp.component.html',
-  styleUrls: ['./body-comp.component.scss']
+  styleUrls: ['./body-comp.component.scss'],
 })
 export class BodyCompComponent implements OnInit {
-  readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/movie/all';
-
+  readonly URLShowing: string =
+    'https://cinema-backend-group1.azurewebsites.net/showing/all';
 
   datas = new Array<any>();
   testArray = [];
-
-  film= [{"path": "../../assets/image/film-cover/film1.png",
+  showingArray = new Array<any>();
+  /*film= [{"path": "../../assets/image/film-cover/film1.png",
           "id": 0,
           "description": "langer text",
           "title": "Movie Title here",
@@ -87,58 +89,74 @@ export class BodyCompComponent implements OnInit {
             "21:00","22:00"
           
         ]  
-        }];
+        }];*/
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'ApiKey MVVYeGwzOEJ2WDF0QmJua3hhYWw6Z2piVVFoMUFRT0NxS2k5RlhXdzdPQQ=='
-    })
+      Authorization:
+        'ApiKey MVVYeGwzOEJ2WDF0QmJua3hhYWw6Z2piVVFoMUFRT0NxS2k5RlhXdzdPQQ==',
+    }),
   };
 
   idNumber: number | undefined;
-  constructor(private http: HttpClient, private dialogRef: MatDialog) { 
-    
-   this.getPost();
-      
-}
-
-
-
-sendGet(): Observable<any> {
-  return this.http.get<any>(this.URL, this.httpOptions);
-}
-
-getPost() {    
-  this.sendGet().subscribe(data => {
-    console.log("Test 1:");
-    
-  });
-}
-
-getID(num: number) {
-  this.idNumber = this.film[num].id; 
-  console.log("Erste Aufruf: " + this.idNumber);
-}
-
-public getIDNumber() {
-  return this.idNumber;
-}
-
-openDialog() {
-  
-  this.dialogRef.open(PopUpComponent, {
-    data: {
-      filmArray: this.film,
-      filmID: this.idNumber
-    }
-  });
-}
-
-
-
-
-
-  ngOnInit(): void {
+  constructor(private http: HttpClient, private dialogRef: MatDialog) {
+    this.getPost();
   }
 
+  sendGet(): Observable<any> {
+    return this.http.get<any>(this.URLShowing, this.httpOptions);
+  }
+
+  getPost() {
+    this.sendGet().subscribe((data) => {
+      for (let i = 0; i < data.length; i++) {
+        let show = {
+          id: data[i].id,
+          title: data[i].title,
+          imagePath: data[i].movie.imagePath,
+          startDate: this.getTime(data[i].startsAt),
+          endDate: this.getTime(data[i].endsAt),
+        };
+
+        this.showingArray[i] = show;
+      }
+    });
+  }
+
+  getTime(date: string): string[] {
+    let formattedDate = new Date(date);
+
+    let timeArray = [];
+    timeArray.push(
+      (formattedDate.getHours() >= 10
+        ? formattedDate.getHours().toString()
+        : '0' + formattedDate.getHours().toString()) +
+        ':' +
+        (formattedDate.getMinutes() >= 10
+          ? formattedDate.getMinutes().toString()
+          : '0' + formattedDate.getMinutes().toString())
+    );
+
+    return timeArray;
+  }
+
+  getID(num: number) {
+    this.idNumber = this.showingArray[num].id;
+  }
+
+  public getIDNumber() {
+    return this.idNumber;
+  }
+
+  openDialog() {
+    this.dialogRef.open(PopUpComponent, {
+      data: {
+        filmArray: this.showingArray,
+        filmID: this.idNumber,
+      },
+    });
+  }
+
+  ngOnInit(): void {}
 }

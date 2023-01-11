@@ -27,6 +27,8 @@
                         <div class="select-ticketart">
                             <label for="kategorie">Wähle deinen Tarif aus:</label>
                             <select (change)="selectChangeHandler($event); getPrice()" name="kategorie" id="kategorie" class="select">
+                                <option value="Tarif" disabled hidden selected>Tarif Auswahl</option>
+                                <option *ngFor="let tarifen of tarif; let i = index" class="opt" value="{{tarifen.bezeichnung}}"> {{tarifen.bezeichnung}} - {{tarifen.preis}} </option>
                                 <option *ngFor="let tarifen of tarif; let i = index" class="opt"
                                     value="{{ tarifen.bezeichnung }}">
                                     {{ tarifen.bezeichnung }} - {{ tarifen.preis }}

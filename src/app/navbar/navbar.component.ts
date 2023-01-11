@@ -9,10 +9,17 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
 
  
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  navigate() {
+  
+    this.router.navigate(['/log-in'], {state: {data: {
+      
+    }}});
+    
+  }
 
 }

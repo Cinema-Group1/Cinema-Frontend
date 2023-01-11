@@ -39,6 +39,7 @@
             }
         .description-wrapper {
             margin: 0px 28px;
+            width: 100%;
             .title-wrapper {
                 color: white;
                 h2 {
@@ -82,6 +83,7 @@
                         letter-spacing: .15em;
                         border-radius: 0;
                         background-color: transparent;
+                        width: 71%;
                         &:hover {
                             cursor: pointer;
                         }
@@ -108,6 +110,7 @@
             }
 
             .booking-inf-wrapper {
+            
                 .wrapper {
                     h3 {
                         margin: 10px 10px -2px 10px;

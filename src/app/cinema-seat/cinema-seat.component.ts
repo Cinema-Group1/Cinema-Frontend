@@ -34,7 +34,6 @@ export class CinemaSeatComponent implements OnInit {
  
   constructor(private http: HttpClient, private router: Router) {
 
-  
 
     
       this.getPost();

@@ -1,0 +1,31 @@
+<div class="cont">
+    <div class="main-container">
+        <div class="main-wrapper">
+            <div class="title-wrapper">
+                <h3>Anmeldung</h3>
+            </div>
+           <div *ngIf="logIn == false" class="wrong-wrapper">
+                <p>Deine Email oder dein Passwort ist falsch!</p>
+           </div>
+
+           
+           
+            <div class="log-in-wrapper">
+                <div class="email">
+                    <label for="email">E-Mail:</label>
+                    <input (keyup)="selectChangeEmail($event)" class="input" type="email" name="" id="email">
+                </div>
+                <div class="passwort">
+                    <label for="password">Passwort:</label>
+                    <input (keyup)="selectChangePasswort($event)" class="input" type="password" name="" id="password">
+                </div>
+                <div class="register-wrapper">
+                    <p>Du hast noch keinen Account? <a href="">Registriere</a> dich jetzt an! </p>
+                </div>
+            </div>
+            <div class="confirm-wrapper">
+                <button (click)="checkPassword()" class="confirm-btn">Bestätigen</button>
+            </div>
+        </div>
+    </div>
+</div>

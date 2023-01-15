@@ -2,25 +2,31 @@
     <div class="main-container">
         <div class="main-wrapper">
             <div class="title-wrapper">
-                <h3>Anmeldung</h3>
-            </div>
-           <div *ngIf="logIn == false" class="wrong-wrapper">
-                <p>Deine Email oder dein Passwort ist falsch!</p>
-           </div>
+                <h3> Willkommen bei Kino<span>Welt</span> </h3>
 
-           
-           
+            </div>
+            
+            
+            
+            <div *ngIf="logIn == false" class="wrong-wrapper">
+                 <p>Deine Email oder dein Passwort ist falsch!</p>
+            </div>
+            <div class="anml-wrapper">
+                <p>Melde dich mit deinen Daten an!</p>
+            </div>
             <div class="log-in-wrapper">
                 <div class="email">
-                    <label for="email">E-Mail:</label>
-                    <input (keyup)="selectChangeEmail($event)" class="input" type="email" name="" id="email">
+                    <label for="email">Email Addresse</label>
+                    <input (keyup)="selectChangeEmail($event)" class="input" type="email" name="" id="email" placeholder="deine@email.de">
+                    <i class="fa fa-envelope"></i>
                 </div>
                 <div class="passwort">
-                    <label for="password">Passwort:</label>
-                    <input (keyup)="selectChangePasswort($event)" class="input" type="password" name="" id="password">
+                    <label for="password">Passwort</label>
+                    <input (keyup)="selectChangePasswort($event)" class="input" type="password" name="" id="password" placeholder="●●●●●●●●●">
+                    <i class="fa fa-lock"></i>
                 </div>
                 <div class="register-wrapper">
-                    <p>Du hast noch keinen Account? <a href="">Registriere</a> dich jetzt an! </p>
+                    <p>Du hast noch keinen Account? <a (click)="navigateToRegister()">Registriere</a> dich jetzt! </p>
                 </div>
             </div>
             <div class="confirm-wrapper">
@@ -29,3 +35,7 @@
         </div>
     </div>
 </div>
+
+<link href='https://css.gg/mail.css' rel='stylesheet'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

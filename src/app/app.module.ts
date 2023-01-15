@@ -22,6 +22,7 @@ import { CinemaSeatComponent } from './cinema-seat/cinema-seat.component';
 import { EndBookingComponent } from './end-booking/end-booking.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { HomeLoggedInComponent } from './home-logged-in/home-logged-in.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HomeLoggedInComponent } from './home-logged-in/home-logged-in.component
     CinemaSeatComponent,
     EndBookingComponent,
     LogInComponent,
-    HomeLoggedInComponent
+    HomeLoggedInComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

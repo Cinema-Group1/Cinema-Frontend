@@ -91,6 +91,14 @@ export class LogInComponent implements OnInit {
     
   }
 
+  navigateToRegister() {
+  
+    this.router.navigate(['/register'], {state: {data: {
+     
+    }}});
+    
+  }
+
   ngOnInit(): void {
   }
 

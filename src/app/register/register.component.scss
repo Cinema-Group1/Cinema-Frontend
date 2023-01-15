@@ -1,9 +1,8 @@
-$p: hsl(213deg 85% 97%);
-$s: hsl(233deg 36% 38%);
 @import url('https://fonts.cdnfonts.com/css/poppins');
 * { font-family: 'Poppins'; }
 
 .cont {
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,34 +10,23 @@ $s: hsl(233deg 36% 38%);
     width: 100%;
     height: 100%;
     .main-container {
+        justify-content: center;
+        align-items: center;
         .main-wrapper {
             display: flex;
             flex-direction: column;
            
             width: auto;
+            // max-width: 49.4%;
             background: hsl(218deg 50% 91%);
 
             padding: 20px;
             box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
             border-radius: 5px;
 
-            .anml-wrapper {
-                margin-bottom: 50px;
-            text-align: center;
-                
-            }
-
-            .wrong-wrapper {
-                text-align: center;
-                
-                p {
-                    font-weight: bolder;
-                    color: #d71e1e;
-                }
-            }
             .title-wrapper {
                 text-align: center;
-                margin: 40px 0 ;
+                margin: 20px 0 0 0  ;
                 h3 {
                     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
                     font-size: 1.6em;
@@ -46,21 +34,15 @@ $s: hsl(233deg 36% 38%);
                     color: hsl(233deg 36% 38%);
                 }
             }
-            .line {
-                margin: 10px 0 10px 0;
-                width: 100%;
-                height: 2px;
-                background-color: rgb(143, 143, 143);
-            }
-            .log-in-wrapper {
 
-                
+            .register-wrapper {
 
-                .email {
-                    // color: white;
-                    // display: flex;
-                    // flex-direction: column;
-                    // margin: 10px 15px;
+                .name-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                }
+                .input-wrapper {
+                    font-weight: 600;
                     background: hsl(0deg 0% 100%);
                     box-shadow: 0 0 2em hsl(231deg 62% 94%);
                     padding: 1em;
@@ -69,31 +51,7 @@ $s: hsl(233deg 36% 38%);
                     gap: 0.5em;
                     border-radius: 20px;
                     color: hsl(0deg 0% 30%);
-                    margin: -3em 20px 1em 20px;
-                    input {
-                        outline: none;
-                        border: none;
-                        &::placeholder {
-                            color: hsl(0deg 0% 0%);
-                            font-size: 0.9em;
-                        }
-                }
-                i {
-                    color: hsl(0deg 0% 30%);
-                    margin-top: -2.299em;
-                    font-size: 15px;
-                }
-            }
-                .passwort {
-                    background: hsl(0deg 0% 100%);
-                    box-shadow: 0 0 2em hsl(231deg 62% 94%);
-                    padding: 1em;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 0.5em;
-                    border-radius: 20px;
-                    color: hsl(0deg 0% 30%);
-                    margin: 1em 20px;
+                    margin: 1.2em 20px 1em 20px;
                     input {
                         outline: none;
                         border: none;
@@ -109,35 +67,82 @@ $s: hsl(233deg 36% 38%);
                     font-size: 15px;
                 }
                 }
-                .input {
-                    border: none;
-                    border-bottom: 2px solid white;
-                    background-color: transparent;
-                    padding: 10px 5px 10px 30px;
-                    color: hsl(0deg 0% 30%);
-                    &:focus, &:active {
-                        outline: none;
-                        border:  none;
-                        border-radius: 5px;
-                        
-                    }
+
+                .input-wrapper-red {
                     
-                }
-                .register-wrapper {
-                    margin: 30px 20px;
-                    font-size: 12px;
-                    color: hsl(233deg 36% 38%);
-                    a {
-                        color: rgb(57, 42, 42);
-                        font-weight: 500;
-                        text-decoration: none;
-                        &:hover {
-                            color: red;
+                    background: hsl(0deg 0% 100%);
+                    box-shadow: 0 0 2em hsl(231deg 62% 94%);
+                    padding: 1em;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5em;
+                    border-radius: 20px;
+                    border: 1px solid red;
+                    color: hsl(0deg 0% 30%);
+                    margin: 1.2em 20px 1em 20px;
+                    input {
+                        outline: none;
+                        border: none;
+                        &::placeholder {
+                            color: hsl(0deg 0% 0%);
+                            font-size: 0.9em;
                         }
+                }
+
+                p {
+                    font-size: 12px;
+                    color: rgb(253, 39, 39);
+                    font-weight: 500;
+                    margin-bottom: -14px;
+                }
+               
+
+                i {
+                    color: hsl(0deg 0% 30%);
+                    margin-top: -2.299em;
+                    font-size: 15px;
+                }
+                }
+                .agb-wrapper {
+                
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 465px;
+
+                    .hold-wrapper {
+                      
+                      font-size: 12px;
+                      color: hsl(0deg 0% 30%);
+                    }
+                    .hold-wrapper-agb {
+                        display: flex;
+                        flex-direction: row;
+                       
+                        font-size: 12px;
+                      color: rgb(0, 0, 0);
+                      margin-top: 20px;
+                      margin-left: 20px;
+                      font-weight: 500;
+                      width: 92%;
+                      input {
+                        outline: none;
+                        position: relative;
+                        bottom: 24px;
+                        border: 2px solid red;
+                        
+                      }
+                      p {
+                        margin-left: 10px;
+                      }
                     }
                 }
             }
+
             .confirm-wrapper {
+                margin-top: 10px;
+                text-align: center;
                 .confirm-btn {
                     padding: 1em 9%;
                     background: hsl(233deg 36% 38%);
@@ -157,10 +162,8 @@ $s: hsl(233deg 36% 38%);
                     
                 }
             }
-        }
-
-        .confirm-wrapper {
-            text-align: center;
+           
+           
         }
     }
 }

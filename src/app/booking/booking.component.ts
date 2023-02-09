@@ -15,18 +15,25 @@ import { CinemaSeatComponent } from '../cinema-seat/cinema-seat.component';
 export class BookingComponent implements OnInit {
   tarif = [
     {
-      bezeichnung: 'Erwachsenen',
-      preis: '13.49€',
+      "id": "1",
+      "bezeichnung": 'Erwachsenen',
+      "preis": '13.49€',
+      "counter": 0
     },
     {
-      bezeichnung: 'Student',
-      preis: '8.99€',
+      "id": "2",
+      "bezeichnung": 'Student',
+      "preis": '8.99€',
+      "counter": 0
     },
     {
-      bezeichnung: 'Kinder',
-      preis: '4.99€',
+      "id": "3",
+      "bezeichnung": 'Kinder',
+      "preis": '4.99€',
+      "counter": 0
     },
   ];
+  tarifId: any;
 
   readonly URL: string =
     'https://cinema-backend-group1.azurewebsites.net/showing/all';
@@ -55,6 +62,10 @@ export class BookingComponent implements OnInit {
         'ApiKey MVVYeGwzOEJ2WDF0QmJua3hhYWw6Z2piVVFoMUFRT0NxS2k5RlhXdzdPQQ==',
     }),
   };
+
+  tarifCounter: number = 0;
+
+
   private routeSub: Subscription = new Subscription();
   constructor(private route: ActivatedRoute, private http: HttpClient) {
     this.getPost();
@@ -73,6 +84,31 @@ export class BookingComponent implements OnInit {
     //update the ui
     this.selectedTarif = event.target.value;
     console.log(this.selectedTarif.preis);
+  }
+
+  getId(event: any) {
+    this.tarifId = event.target.value;
+    
+  }
+
+  increaseCounter() {
+    for(let i = 0; i < this.tarif.length; i++) {
+      if(this.tarifId == this.tarif[i].id) {
+        console.log(this.tarif[i].counter);
+        this.tarif[i].counter++;
+        console.log(this.tarif[i].counter);
+      }
+    }
+  }
+
+  decreaseCounter() {
+    for(let i = 0; i < this.tarif.length; i++) {
+      if(this.tarifId == this.tarif[i].id) {
+        console.log(this.tarif[i].counter);
+        this.tarif[i].counter--;
+        console.log(this.tarif[i].counter);
+      }
+    }
   }
 
   sendGet(): Observable<any> {
@@ -95,6 +131,8 @@ export class BookingComponent implements OnInit {
       }
     });
   }
+
+
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe((params) => {

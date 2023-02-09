@@ -85,8 +85,8 @@ export class RegisterComponent implements OnInit {
         return true;
       } else {
         console.log("Password stimmt nicht");
-        this.inputRepeatPassword = "";
-        this.inputPassword = "";
+        // this.inputRepeatPassword = "";
+        // this.inputPassword = "";
         this.passwordErrorMessage = "Die Passwörter stimmen nicht überein.";
         this.passwordComp = false;
       }

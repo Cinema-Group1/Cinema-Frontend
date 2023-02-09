@@ -126,6 +126,26 @@
                 }
             }
 
+            .ticket-wrapper {
+               
+                .counter-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    button {
+                        padding: 0px 15px 0px 15px;
+                        outline: none;
+                        border: 1px solid white;
+                        
+                    }
+                    p {
+                        background-color: white;
+                        color: black;
+                        position: relative;
+                        top: 5px;
+                        padding: 0px 10px 0 10px;
+                    }
+                }
+            }
 }
         
     }

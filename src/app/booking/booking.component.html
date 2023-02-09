@@ -45,6 +45,15 @@
                             </p>
                         </div>
                     </div>
+                    <div *ngFor="let temp of tarif; let i = index" class="ticket-wrapper">
+                       <h4>Wähle eine Anzahl über den Tarif: {{temp.bezeichnung}} </h4>
+                       <div class="counter-wrapper">
+
+                           <button (click)="getId(temp.id); decreaseCounter()" >-</button>
+                           <p>{{temp.counter}}</p>
+                           <button (click)="getId(temp.id); increaseCounter()" >+</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -54,3 +63,5 @@
         </div>
     </div>
 </div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

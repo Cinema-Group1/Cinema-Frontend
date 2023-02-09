@@ -110,7 +110,7 @@ export class BodyCompComponent implements OnInit {
 
   getPost() {
     this.sendGet().subscribe((data) => {
-      for (let i = 0; i < data.length; i++) {
+      for (let i = 0; i < 8; i++) {
         let show = {
           id: data[i].id,
           title: data[i].title,

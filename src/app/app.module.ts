@@ -23,6 +23,7 @@ import { EndBookingComponent } from './end-booking/end-booking.component';
 import { LogInComponent } from './log-in/log-in.component';
 import { HomeLoggedInComponent } from './home-logged-in/home-logged-in.component';
 import { RegisterComponent } from './register/register.component';
+import { ProgrammTicketComponent } from './programm-ticket/programm-ticket.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { RegisterComponent } from './register/register.component';
     EndBookingComponent,
     LogInComponent,
     HomeLoggedInComponent,
-    RegisterComponent
+    RegisterComponent,
+    ProgrammTicketComponent
   ],
   imports: [
     BrowserModule,

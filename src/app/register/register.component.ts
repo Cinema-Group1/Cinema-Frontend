@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
 
-  readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/user/all';
+  readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/user/add';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -39,10 +39,13 @@ export class RegisterComponent implements OnInit {
 
   checkPass: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router) { }
-  
-  sendGet(): Observable<any> {
-    return this.http.get<any>(this.URL, this.httpOptions);
+  eEmail: any;
+
+  constructor(private http: HttpClient, private router: Router) { 
+    this.sendGet();
+  }
+  test() {
+    console.log(this.sendGet());
   }
   
   getPost() {    
@@ -52,6 +55,9 @@ export class RegisterComponent implements OnInit {
 
   getPassword (event: any) {
     this.inputPassword = event.target.value;
+  }
+  getEmail (event: any) {
+    this.eEmail = event.target.value;
   }
 
   getFirstName (event: any) {
@@ -71,6 +77,31 @@ export class RegisterComponent implements OnInit {
     console.log(this.checkbox);
   }
 
+
+   
+  sendGet(): Observable<any> {
+    this.body = {
+        "firstName": this.inputFirstName, 
+           "lastName": this.inputLastName,  
+             "dob": "2022-12-12",   
+              "eMail": this.eEmail, 
+                 "password": this.inputPassword,
+                     "zipCode": "12345",    
+                     "city": "test2",   
+                      "street": "test2", 
+                         "number": "test2",
+                             "additionalInformation": "test2"
+                            };
+
+    console.log(this.body);
+    return this.http.post<any>(this.URL, this.body, this.httpOptions)
+  }
+
+    post() {
+      this.sendGet().subscribe(data => {
+  
+      });
+    }
   comparePassword() {
     if(!(this.inputPassword.length >= 5)) {
       this.passwordErrorMessage = "Dein Password muss länger als 5 Zeichen sein."

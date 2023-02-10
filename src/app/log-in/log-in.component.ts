@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 export class LogInComponent implements OnInit {
 
   readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/user/all';
-
+  readonly URL2: string = 'https://cinema-backend-group1.azurewebsites.net/user/validateLogin'
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -19,18 +19,31 @@ export class LogInComponent implements OnInit {
     })
   };
 
+  body: any;
   inputEmail: any;
   inputPasswort: any;
 
-  userEmail: any = ["peter@test.de", "test@peter.de"];
-  userPasswords: any = ["1","2"];
+  userEmail: any = [];
+  userPasswords: any = [];
+  userID: any = [];
 
   currentUserEmail: any;
   currentUserPasswort: any;
 
-  logIn: any;
+  currentUserID: any;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  validPassword: any;
+  validAccount: any;
+
+  logIn: boolean = false;
+
+  errorMessage: any;
+
+  constructor(private http: HttpClient, private router: Router) {
+   
+    this.getPost();
+    
+   }
 
 
   sendGet(): Observable<any> {
@@ -38,13 +51,67 @@ export class LogInComponent implements OnInit {
   }
   
   getPost() {    
+    
     this.sendGet().subscribe(data => {
+
+     console.log(data);
+     console.log(this.inputEmail);
       for(let i = 0; i < data.length; i++) {
-        this.userEmail = data[i].email;
-        this.userPasswords = data[i].password;
+     
+        if(this.inputEmail.localeCompare(data[i].eEmail) == 0) {
+         
+          this.currentUserID = data[i].id
+          console.log(this.currentUserID);
+          this.router.navigate(['/home', this.currentUserID]);
+        }
+        
       }
     });
+
   }
+
+  getValidate(): Observable<any> {
+    this.body = {
+      "eMail": this.inputEmail,
+      "pwd": this.inputPasswort
+    };
+    return this.http.post<any>(this.URL2, this.body, this.httpOptions);
+  }
+
+  getValidateFunc() {
+    this.getValidate().subscribe(data => {
+      this.validPassword = data;
+      this.validAccount = true;
+      console.log(this.currentUserID);
+      
+    }, error => {
+      if(error.status == "404" || error.status == "403") {
+        this.validPassword = false;
+        this.inputEmail = false;
+        
+        this.errorMessage = "Password oder Email ist falsch!"
+      } else {
+        this.errorMessage = error.status + " " + error.statusText;
+        
+      }
+
+      this.validAccount = false;
+      console.log(error);
+    });
+  }
+
+    navigate() {
+      console.log(this.currentUserID);
+      this.router.navigate(['/home', this.currentUserID]);
+      
+    }
+
+    finalCheck() {
+      this.getValidateFunc();
+      this.getPost();
+     
+     
+    }
 
   selectChangeEmail (event: any) {
     //update the ui
@@ -58,39 +125,8 @@ export class LogInComponent implements OnInit {
     
   }
 
-  checkPassword() {
-    for(let i = 0; i < this.userEmail.length; i++) {
-      if(this.inputEmail == this.userEmail[i]) {
-        this.currentUserEmail = this.inputEmail;
-        console.log("userEmail: " + this.userEmail[i]);
-        console.log("inputEmail: " + this.inputEmail);
-        console.log("currentUserEmail: " + this.currentUserEmail );
-        console.log(this.logIn);
-        if(this.inputPasswort == this.userPasswords[i]) {
-            this.currentUserPasswort = this.inputPasswort;
-            console.log("userPasswort: " + this.userPasswords[i]);
-            console.log("inputPasswort: " + this.inputPasswort);
-            console.log("currentUserPassword: " + this.currentUserPasswort );
-            this.navigate();
-            this.logIn = true;
-            console.log(this.logIn);
-        } else {
-            this.logIn = false;
-        }
-      } else {
-        this.logIn = false;
-      }
-    }
-  }
-
-  navigate() {
   
-    this.router.navigate(['/home-logged-in'], {state: {data: {
-     
-    }}});
-    
-  }
-
+  
   navigateToRegister() {
   
     this.router.navigate(['/register'], {state: {data: {

@@ -8,7 +8,7 @@
         <div class="programm-container">
             <div *ngFor="let data of showingArray; let i = index">
                 <div class="film-wrapper">
-                    <img (click)="getID(i); openDialog()" src="{{ showingArray[i].imagePath }}" class="film-image" alt="" />
+                    <img (click)="getID(i); openDialog()" src="{{ data[i].imagePath }}" class="film-image" alt="" />
                 </div>
             </div>
         </div>

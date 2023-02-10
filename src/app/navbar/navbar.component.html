@@ -7,17 +7,37 @@
 <div class="main-body">
 
     <nav class="main-nav flip-background">
-        <input type="checkbox" class="checkbox" id="check">
-        <label for="check" class="checkbtn">
+        <!-- <input type="checkbox" class="checkbox" id="check"> -->
+        <!-- <label for="check" class="checkbtn">
             <mat-icon style="color: black;">reorder</mat-icon>
-        </label>
-        <label class="logo">Logo</label>
-        <ul class="list">
-            <li class="li-l"><a class="active" href="#">Programm & Tickets</a></li>
-            <li class="li-l"><a class="active" href="#">Events</a></li>
-            <li class="li-l"><a class="active" href="#">Angebote</a></li>
-            <li class="li-l"><a (click)="navigate()" class="active log-in" >Anmeldung</a></li>
-        </ul>
+        </label> -->
+        <label class="logo" style="font-size: 20px;"> <b>Kino</b>Welt <i class="fa fa-globe"></i> </label>
+        <div class="list">
+            <div class="li-l"><a class="active" (click)="navigateToProgrammTicket()">Programm & Tickets</a></div>
+            <div class="li-l"><a class="active" href="#">Events</a></div>
+            <div class="li-l"><a class="active" href="#">Angebote</a></div>
+            <div *ngIf="logIn == false; else elseBlock">
+                <div class="li-l-position"><a (click)="navigate()" class="active log-in" >Anmeldung</a></div>
+            </div>
+
+            <ng-template #elseBlock>
+                <li class="li-l-position-hallo">Hallo, <b> {{userName}} </b> 
+            
+                    <div class="dropdown" style="float: right; ">
+                        <button class="dropbtn" style="margin-left: 10px; font-size: 15px"><i class="fa fa-bars"></i></button>
+                        <div class="dropdown-content"  style="right:0;">
+                          <a href="#">Profil</a>
+                          <a href="#">Einstellungen</a>
+                          <a (click)="navigateHome()" href="#">Abmeldung</a>
+                        </div>
+                      </div>
+
+                
+           
+                </li>
+               
+            </ng-template>
+        </div>
     </nav>
     
     <app-body-comp></app-body-comp>
@@ -25,3 +45,6 @@
 
 </body>
 </html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">

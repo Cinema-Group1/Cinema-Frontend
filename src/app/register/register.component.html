@@ -47,7 +47,7 @@
                 
                 <div class="input-wrapper">
                     <label for="email">Email Addresse</label>
-                    <input  class="input" type="email" name="" id="email" placeholder="deine@email.de">
+                    <input (keyup)="getEmail($event)" class="input" type="email" name="" id="email" placeholder="deine@email.de">
                 </div>
                 
                 <div *ngIf="passwordComp; else elseBlock" class="comparePassword">
@@ -103,7 +103,7 @@
 
             </div>
             <div class="confirm-wrapper">
-                <button (click)="comparePassword(); checkPassword(); navigate()" class="confirm-btn">Bestätigen</button>
+                <button (click)="post(); test()" class="confirm-btn">Bestätigen</button>
             </div>
     </div>
 </div>

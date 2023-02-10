@@ -107,7 +107,6 @@ export class BodyCompComponent implements OnInit {
   sendGet(): Observable<any> {
     return this.http.get<any>(this.URLShowing, this.httpOptions);
   }
-
   getPost() {
     this.sendGet().subscribe((data) => {
       for (let i = 0; i < 8; i++) {
@@ -118,10 +117,11 @@ export class BodyCompComponent implements OnInit {
           startDate: this.getTime(data[i].startsAt),
           endDate: this.getTime(data[i].endsAt),
         };
-
+        console.log(data[i].movie.imagePath);
         this.showingArray[i] = show;
       }
     });
+    console.log(this.showingArray);
   }
 
   getTime(date: string): string[] {

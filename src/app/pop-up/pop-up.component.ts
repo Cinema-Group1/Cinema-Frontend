@@ -64,7 +64,7 @@ export class PopUpComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigate(['/booking', this.filmID])
+    this.router.navigate(['/booking', this.filmID]);
     this.dialogRef.close();
   }
 

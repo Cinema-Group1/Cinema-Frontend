@@ -8,8 +8,8 @@
             
             
             
-            <div *ngIf="logIn == false" class="wrong-wrapper">
-                 <p>Deine Email oder dein Passwort ist falsch!</p>
+            <div *ngIf="validAccount == false" class="wrong-wrapper">
+                 <p>{{errorMessage}}</p>
             </div>
             <div class="anml-wrapper">
                 <p>Melde dich mit deinen Daten an!</p>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="confirm-wrapper">
-                <button (click)="checkPassword()" class="confirm-btn">Bestätigen</button>
+                <button (click)="finalCheck()" class="confirm-btn">Bestätigen</button>
             </div>
         </div>
     </div>

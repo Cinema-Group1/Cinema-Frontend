@@ -45,15 +45,29 @@
                             </p>
                         </div>
                     </div>
-                    <div *ngFor="let temp of tarif; let i = index" class="ticket-wrapper">
-                       <h4>Wähle eine Anzahl über den Tarif: {{temp.bezeichnung}} </h4>
-                       <div class="counter-wrapper">
-
-                           <button (click)="getId(temp.id); decreaseCounter()" >-</button>
-                           <p>{{temp.counter}}</p>
-                           <button (click)="getId(temp.id); increaseCounter()" >+</button>
+                    
+                       <!-- <div class="counter-wrapper">
+                        <h4 class="padd">Wähle eine Anzahl über den Tarif: Kinder </h4>
+                           <button class="padd" (click)="counterDecreaseKinder()" >-</button>
+                           <p class="padd"> {{kinderTarifCounter}} </p>
+                           <button class="padd" (click)="counterIncreaseKinder() " >+</button>
                         </div>
-                    </div>
+
+                        <div class="counter-wrapper">
+                            <h4 class="padd">Wähle eine Anzahl über den Tarif: Student </h4>
+                            <button  class="padd"(click)="counterDecreaseStudent()" >-</button>
+                            <p class="padd"> {{studentTarifCounter}} </p>
+                            <button class="padd" (click)="counterIncreaseStudent() " >+</button>
+                         </div>
+
+                         <div class="counter-wrapper">
+                            <h4 class="padd">Wähle eine Anzahl über den Tarif: Erwachsenen </h4>
+                            <button  class="padd"(click)="counterDecreaseErwachsenen()" >-</button>
+                           <p class="padd"> {{erwachsenenTarifCounter}} </p>
+                           <button class="padd" (click)="counterIncreaseErwachsenen() " >+</button>
+                         </div> -->
+
+                    
                 </div>
             </div>
 

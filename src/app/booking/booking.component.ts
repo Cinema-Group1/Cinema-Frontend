@@ -33,6 +33,13 @@ export class BookingComponent implements OnInit {
       "counter": 0
     },
   ];
+
+  kinderTarifCounter: number = 0;
+  studentTarifCounter: number = 0;
+  erwachsenenTarifCounter: number= 0;
+
+  
+
   tarifId: any;
 
   readonly URL: string =
@@ -91,25 +98,46 @@ export class BookingComponent implements OnInit {
     
   }
 
-  increaseCounter() {
-    for(let i = 0; i < this.tarif.length; i++) {
-      if(this.tarifId == this.tarif[i].id) {
-        console.log(this.tarif[i].counter);
-        this.tarif[i].counter++;
-        console.log(this.tarif[i].counter);
-      }
+  counterIncreaseKinder() {
+    this.kinderTarifCounter++;
+  }
+  counterDecreaseKinder() {
+    if(this.kinderTarifCounter < 0) {
+
+      this.kinderTarifCounter--;
     }
   }
 
-  decreaseCounter() {
-    for(let i = 0; i < this.tarif.length; i++) {
-      if(this.tarifId == this.tarif[i].id) {
-        console.log(this.tarif[i].counter);
-        this.tarif[i].counter--;
-        console.log(this.tarif[i].counter);
-      }
+  
+  counterIncreaseStudent() {
+    this.studentTarifCounter++;
+  }
+  counterDecreaseStudent() {
+    if(this.studentTarifCounter < 0) {
+
+      this.studentTarifCounter--;
     }
   }
+
+  
+  counterIncreaseErwachsenen() {
+    this.erwachsenenTarifCounter++;
+  }
+  counterDecreaseErwachsenen() {
+    if(this.erwachsenenTarifCounter < 0) {
+
+      this.erwachsenenTarifCounter--;
+    }
+  }
+  // decreaseCounter() {
+  //   for(let i = 0; i < this.tarif.length; i++) {
+  //     if(this.tarifId == this.tarif[i].id) {
+  //       console.log(this.tarif[i].counter);
+  //       this.tarif[i].counter--;
+  //       console.log(this.tarif[i].counter);
+  //     }
+  //   }
+  // }
 
   sendGet(): Observable<any> {
     return this.http.get<any>(this.URL, this.httpOptions);

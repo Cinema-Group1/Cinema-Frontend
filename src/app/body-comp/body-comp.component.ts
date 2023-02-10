@@ -36,7 +36,7 @@ export class BodyCompComponent implements OnInit {
           
         ]  
         },
-         {"path": "../../assets/image/film-cover/film3.png",
+         {"path": "../../assets/image/film-cover/film3.pngpath": "../../assets/image/film-cover/film3.png",
           "id": 2,
           "description": "Der in Ungnade gefallene US-Geheimagent Nicolas Shaw (Barry Pepper) leidet seit seinem letzten Einsatz an Gedächtnisverlust. Shaw wird aus der tödlichen Spionagewelt gezogen, als eine vertraute Kollegin von ihm spurlos verschwindet. Nun muss er all seine Fähigkeiten bündeln, um die Frau zu finden und die Wahrheit aufzudecken. Doch dies kann ihm nur gelingen, wenn er sich irgendwie wieder an seine Vergangenheit erinnert…",
           "title": "Trigger Point",
@@ -113,7 +113,7 @@ export class BodyCompComponent implements OnInit {
         let show = {
           id: data[i].id,
           title: data[i].title,
-          imagePath: data[i].movie.imagePath,
+          imagePath: "../../assets/image/film-cover/film3.png",
           startDate: this.getTime(data[i].startsAt),
           endDate: this.getTime(data[i].endsAt),
         };

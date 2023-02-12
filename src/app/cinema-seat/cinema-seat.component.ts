@@ -36,6 +36,7 @@ export class CinemaSeatComponent implements OnInit {
 
   filmId: any;
   
+  paymentCheck: boolean = false;
    
 
   private routeSub: Subscription = new Subscription;
@@ -49,6 +50,14 @@ export class CinemaSeatComponent implements OnInit {
     this.getPost();
   }
 
+  setPayment() {
+    if(this.paymentCheck == false) {
+      
+      this.paymentCheck = true;
+    } else {
+      this.paymentCheck = false;
+    }
+  }
   
   sendGetShowing(): Observable<any> {
     return this.http.get<any>(this.URLShowing + this.filmId , this.httpOptions);

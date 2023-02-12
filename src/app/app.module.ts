@@ -26,10 +26,12 @@ import { RegisterComponent } from './register/register.component';
 import { ProgrammTicketComponent } from './programm-ticket/programm-ticket.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
+    
     BodyCompComponent,
     PopUpComponent,
     BookingComponent,

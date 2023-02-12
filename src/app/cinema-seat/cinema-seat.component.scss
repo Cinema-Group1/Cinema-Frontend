@@ -2,6 +2,19 @@
     text-align: center;
 }
 
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .both-container {
+        display: flex;
+        flex-direction: row;
+        .seat-container {
+            flex-direction: column;
+        }
+    }
+}
 .cinemaPlan {}
 
 .row {
@@ -22,7 +35,7 @@
     margin: 10px;
     margin: 10px 3px;
     font-size: 1em;
-    padding: 5px;
+  
     color: white;
     background: transparent;
     border: none;
@@ -77,3 +90,85 @@
 }
 
 .cinemaPlan {}
+
+.main-wrapper {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 20px;
+    text-align: center;
+    margin-top: 50%;
+    margin-left: 15%;
+   
+border:    1px solid #ff4c6b;;
+border-radius: 5px;
+
+.title {
+    color: #ff4c6b;
+}
+
+.payment-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   .payment {
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       width: auto;
+       height: auto;
+       margin: 10px 5px;
+       
+       .bar {
+       
+       
+            i {
+                
+            }
+            p {
+               
+            }
+            &:hover {
+                cursor: pointer;
+                outline: none;
+                border: 2px solid  #c68714;
+            }
+       }
+        button {
+            font-weight: 600;
+            background-color: #3b3e4d;
+            color: white;
+            border: white 1px solid;
+         
+            i {
+                padding-left: 35px;
+                font-size: 20px;
+                color: white;
+            }
+            p {
+                margin-top: 5px;
+                font-size: 5px;
+                color: white;
+            }
+            &:hover {
+                cursor: pointer;
+                outline: none;
+                border: 2px solid  #c68714;
+            }
+         
+                }
+            }
+        }
+    }
+
+.kreditkarte {
+    padding: 10px 10px 10px 10px;
+}
+.bar {
+    padding: 10px 49px 10px 10px;
+}
+.paypal {
+    padding: 5px 14px 5px 10px;
+}

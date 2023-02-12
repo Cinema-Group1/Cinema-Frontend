@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'programm-ticket', component: ProgrammTicketComponent},
   {path: 'end-booking', component: EndBookingComponent},
   {path: 'log-in', component: LogInComponent},
- 
+  
   {path: 'register', component: RegisterComponent},
   { path: '',  redirectTo: '/home', pathMatch: 'full' }
 ];

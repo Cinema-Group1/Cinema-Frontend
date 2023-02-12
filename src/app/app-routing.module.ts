@@ -10,7 +10,7 @@ import { ProgrammTicketComponent } from './programm-ticket/programm-ticket.compo
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  {path: 'booking/:id', component: BookingComponent},
+  {path: 'booking/:userId/:id', component: BookingComponent},
   {path: 'home/:id', component: NavbarComponent},
   {path: 'home', component: NavbarComponent},
   {path: 'home-loggedId/:id', component: HomeLoggedInComponent},

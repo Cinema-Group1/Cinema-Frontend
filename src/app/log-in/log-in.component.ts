@@ -20,7 +20,7 @@ export class LogInComponent implements OnInit {
   };
 
   body: any;
-  inputEmail: any;
+  inputEmail: string = "";
   inputPasswort: any;
 
   userEmail: any = [];
@@ -40,8 +40,6 @@ export class LogInComponent implements OnInit {
   errorMessage: any;
 
   constructor(private http: HttpClient, private router: Router) {
-   
-    this.getPost();
     
    }
 
@@ -54,12 +52,9 @@ export class LogInComponent implements OnInit {
     
     this.sendGet().subscribe(data => {
 
-     console.log(data);
-     console.log(this.inputEmail);
-      for(let i = 0; i < data.length; i++) {
      
-        if(this.inputEmail.localeCompare(data[i].eEmail) == 0) {
-         
+      for(let i = 0; i < data.length; i++) {
+        if(this.inputEmail.localeCompare(data[i].eEmail) === 0) {
           this.currentUserID = data[i].id
           console.log(this.currentUserID);
           this.router.navigate(['/home', this.currentUserID]);
@@ -71,6 +66,8 @@ export class LogInComponent implements OnInit {
   }
 
   getValidate(): Observable<any> {
+    console.log(this.inputEmail);
+    console.log(this.inputPasswort);
     this.body = {
       "eMail": this.inputEmail,
       "pwd": this.inputPasswort
@@ -86,9 +83,6 @@ export class LogInComponent implements OnInit {
       
     }, error => {
       if(error.status == "404" || error.status == "403") {
-        this.validPassword = false;
-        this.inputEmail = false;
-        
         this.errorMessage = "Password oder Email ist falsch!"
       } else {
         this.errorMessage = error.status + " " + error.statusText;

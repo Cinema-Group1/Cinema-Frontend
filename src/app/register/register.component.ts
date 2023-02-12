@@ -100,8 +100,6 @@ export class RegisterComponent implements OnInit {
                          "number": "test2",
                              "additionalInformation": "test2"
                             };
-
-    console.log(this.body);
     
     return this.http.post<any>(this.URL, this.body, this.httpOptions)
   }

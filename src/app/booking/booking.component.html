@@ -25,7 +25,7 @@
                     </div>
                     <div class="select-wrapper">
                         <div class="select-ticketart">
-                            <label for="kategorie">Wähle deinen Tarif aus:</label>
+                            <label for="kategorie">Wähle deinen Tarif aus und finde heraus wie viel dieser kostet:</label>
                             <select (change)="selectChangeHandler($event); getPrice()" name="kategorie" id="kategorie" class="select">
                                 <option value="Tarif" disabled hidden selected>Tarif Auswahl</option>
                                 <option *ngFor="let tarifen of tarif; let i = index" class="opt" value="{{tarifen.bezeichnung}}"> {{tarifen.bezeichnung}} - {{tarifen.preis}} </option>
@@ -43,9 +43,10 @@
                             <p>
                                 Preis: <span style="color: #4ec300"> {{ price }}</span>
                             </p>
+                            <p>Sie können nun Sitze auswählen!</p>
                         </div>
                     </div>
-                    <div *ngFor="let temp of tarif; let i = index" class="ticket-wrapper">
+                    <!-- <div *ngFor="let temp of tarif; let i = index" class="ticket-wrapper">
                         <h4>Wähle eine Anzahl über den Tarif: {{temp.bezeichnung}} </h4>
                         <div class="counter-wrapper">
 
@@ -53,7 +54,7 @@
                             <p>{{temp.counter}}</p>
                             <button (click)="increaseCounter(temp.id)">+</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class EndBookingComponent implements OnInit {
 
   selectedSeats: any = [];
+  paymentCheck: any;
 
   constructor() {
 
     this.selectedSeats = history.state.data.selected;
+    this.paymentCheck = history.state.data.paymentCheck;
 
     console.log(this.selectedSeats);
    }

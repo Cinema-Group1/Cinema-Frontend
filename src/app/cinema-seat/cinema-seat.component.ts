@@ -118,7 +118,8 @@ export class CinemaSeatComponent implements OnInit {
     this.router.navigate(['/end-booking'], {
       state: {
         data: {
-          selected: this.selected
+          selected: this.selected,
+          paymentCheck: this.paymentCheck
         }
       }
     });

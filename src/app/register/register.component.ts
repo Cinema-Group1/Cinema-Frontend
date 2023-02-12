@@ -77,6 +77,16 @@ export class RegisterComponent implements OnInit {
     console.log(this.checkbox);
   }
 
+ ValidateEmail(mail: any) 
+  {
+   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.eEmail))
+    {
+      return (true)
+    }
+      alert("You have entered an invalid email address!")
+      return (false)
+  }
+
   sendGet(): Observable<any> {
     this.body = {
         "firstName": this.inputFirstName, 

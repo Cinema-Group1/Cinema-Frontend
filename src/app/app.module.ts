@@ -25,6 +25,7 @@ import { HomeLoggedInComponent } from './home-logged-in/home-logged-in.component
 import { RegisterComponent } from './register/register.component';
 import { ProgrammTicketComponent } from './programm-ticket/programm-ticket.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

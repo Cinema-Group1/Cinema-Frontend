@@ -96,6 +96,12 @@ export class RegisterComponent implements OnInit {
     return this.http.post<any>(this.URL, this.body, this.httpOptions)
   }
 
+
+  navigateLog() {
+    
+    this.router.navigate(['/log-in']);
+    
+  }
     post() {
       this.comparePassword();
       this.checkPassword();
@@ -103,6 +109,7 @@ export class RegisterComponent implements OnInit {
   
       });
       this.router.navigate(['/log-in']);
+
     }
   comparePassword() {
     if(!(this.inputPassword.length >= 5)) {

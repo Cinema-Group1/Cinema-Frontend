@@ -16,6 +16,7 @@ export class EndBookingComponent implements OnInit {
     console.log(this.selectedSeats);
    }
 
+   
   ngOnInit(): void {
   }
 

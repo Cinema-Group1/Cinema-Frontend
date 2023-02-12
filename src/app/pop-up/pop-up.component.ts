@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subscription } from 'rxjs';
 import { BodyCompComponent } from '../body-comp/body-comp.component';
 
 @Component({
@@ -26,6 +26,8 @@ export class PopUpComponent implements OnInit {
   filmEvent = [];
   dialogRef: any;
 
+  userId: any;
+
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -44,10 +46,13 @@ export class PopUpComponent implements OnInit {
     });
   }
 
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private router: Router, private http: HttpClient) {
+ 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private router: Router, private http: HttpClient,  private route: ActivatedRoute) {
     this.filmArray = data.filmArray;
     this.filmID = data.filmID;
+    this.userId = data.userID
+
+   
 
     console.log(this.filmArray);
     console.log(this.filmID);
@@ -64,8 +69,15 @@ export class PopUpComponent implements OnInit {
   }
 
   navigate() {
-    this.router.navigate(['/booking', this.filmID]);
+    if(!this.userId){
+
+      this.router.navigate(['/log-in']);
+    }
+    else{
+    this.router.navigate(['/booking', this.userId, this.filmID]);
+    
     this.dialogRef.close();
+    }
   }
 
   closeDialog() {
@@ -75,5 +87,4 @@ export class PopUpComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -24,6 +24,7 @@ export class CinemaSeatComponent implements OnInit {
   seats: any = [];
 
   readonly URLShowing: string = 'https://cinema-backend-group1.azurewebsites.net/seat/showing:' 
+  readonly URLBooking: string = 'https://cinema-backend-group1.azurewebsites.net/booking/add'
 
   seatsN: any = [];
 
@@ -35,6 +36,7 @@ export class CinemaSeatComponent implements OnInit {
   boockedSeats: any = [];
 
   filmId: any;
+  userId: any;
   
   paymentCheck: boolean = false;
    
@@ -43,9 +45,8 @@ export class CinemaSeatComponent implements OnInit {
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
 
     this.routeSub = this.route.params.subscribe(params => {
-
       this.filmId = params['id'];
-
+      this.userId = params['userId'];
     })
     this.getPost();
   }
@@ -70,7 +71,6 @@ export class CinemaSeatComponent implements OnInit {
   getPost() {
     this.sendGetShowing().subscribe(data => {
       this.seats = data;
-      console.log(this.seats);
       this.sortAlgString(this.seats);
       this.sortAlg(this.seats);
       // this.boockedSeats[i] = "" + this.seatsLine[i]+ this.seatsNumber[i]
@@ -127,25 +127,15 @@ export class CinemaSeatComponent implements OnInit {
 
   // A4
   sendPost() {
-    let num: any;
-    let line: string;
-    for (let i = 0; i < this.selected.length; i++) {
-      line = this.selected[i].substring(0, 1);
-      console.log("line: " + line);
-      num = this.selected[i].substring(1, 2);
-      console.log("num" + num);
-      this.body[i] = {
-        "seatNumber": {
-          "id": this.selected[i],
-          "line": line,
-          'number': num
-        },
-        "price": "",
-        "occupied": "true"
-      }
+    
+ 
+    this.body = {
+      "userId": this.userId,
+      "showingId": this.filmId,
+      "seatNumbers": this.selected          
     }
-    console.log(this.body);
-    return this.http.post(this.URLShowing + this.filmId, this.body, this.httpOptions);
+  return this.http.post<any>(this.URLBooking, this.body, this.httpOptions)
+
   }
 
   ngOnInit(): void {

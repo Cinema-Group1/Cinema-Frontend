@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { PopUpComponent } from '../pop-up/pop-up.component';
 import { getMatFormFieldMissingControlError } from '@angular/material/form-field';
 import { getLocaleTimeFormat } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-body-comp',
@@ -98,9 +99,10 @@ export class BodyCompComponent implements OnInit {
         'ApiKey MVVYeGwzOEJ2WDF0QmJua3hhYWw6Z2piVVFoMUFRT0NxS2k5RlhXdzdPQQ==',
     }),
   };
-
+  userId: any;
   idNumber: number | undefined;
-  constructor(private http: HttpClient, private dialogRef: MatDialog) {
+  private routeSub: Subscription = new Subscription;
+  constructor(private http: HttpClient, private dialogRef: MatDialog, private route: ActivatedRoute) {
     this.getPost();
   }
 
@@ -154,9 +156,14 @@ export class BodyCompComponent implements OnInit {
       data: {
         filmArray: this.showingArray,
         filmID: this.idNumber,
+        userID: this.userId
       },
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.routeSub = this.route.params.subscribe((params) => {
+      this.userId = params['id'];
+    });
+  }
 }

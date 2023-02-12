@@ -77,8 +77,6 @@ export class RegisterComponent implements OnInit {
     console.log(this.checkbox);
   }
 
-
-   
   sendGet(): Observable<any> {
     this.body = {
         "firstName": this.inputFirstName, 
@@ -94,13 +92,17 @@ export class RegisterComponent implements OnInit {
                             };
 
     console.log(this.body);
+    
     return this.http.post<any>(this.URL, this.body, this.httpOptions)
   }
 
     post() {
+      this.comparePassword();
+      this.checkPassword();
       this.sendGet().subscribe(data => {
   
       });
+      this.router.navigate(['/log-in']);
     }
   comparePassword() {
     if(!(this.inputPassword.length >= 5)) {

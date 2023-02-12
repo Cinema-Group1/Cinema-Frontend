@@ -7,7 +7,7 @@
 
             <div class="wrong-wrapper">
                 <div *ngIf="passwordComp" class="wrong-password">
-                   
+
                 </div>
             </div>
 
@@ -19,10 +19,10 @@
                         <label for="vorname">Vorname</label>
                         <input (keyup)="getFirstName($event)" class="input" type="text" name="" id="vorname" placeholder="Justin">
                     </div>
-                
+
                     <div *ngIf="checkLastName; else elseLast" class="input-wrapper">
                         <label for="nachname">Nachname</label>
-                        <input  (keyup)="getLastName($event)" class="input" type="text" name="" id="nachname" placeholder="Schwab">
+                        <input (keyup)="getLastName($event)" class="input" type="text" name="" id="nachname" placeholder="Schwab">
                     </div>
 
                     <ng-template #elseFirst>
@@ -36,60 +36,60 @@
                     <ng-template #elseLast>
                         <div class="input-wrapper">
                             <label for="nachname">Nachname</label>
-                            <input  (keyup)="getLastName($event)" class="input" type="text" name="" id="nachname" placeholder="Schwab">
+                            <input (keyup)="getLastName($event)" class="input" type="text" name="" id="nachname" placeholder="Schwab">
                             <p>{{errorMessage}}</p>
                         </div>
                     </ng-template>
 
                 </div>
 
-                
-                
+
+
                 <div class="input-wrapper">
                     <label for="email">Email Addresse</label>
                     <input (keyup)="getEmail($event)" class="input" type="email" name="" id="email" placeholder="deine@email.de">
                 </div>
-                
+
                 <div *ngIf="passwordComp; else elseBlock" class="comparePassword">
                     <div class="input-wrapper">
                         <label for="password">Passwort</label>
-                        <input (keyup)="getPassword($event)" class="input" type="password" name="" id="password" placeholder="Füge dein Passwort ein." >
-                        
+                        <input (keyup)="getPassword($event)" class="input" type="password" name="" id="password" placeholder="Füge dein Passwort ein.">
+
                     </div>
-                    
+
                     <div class="input-wrapper">
                         <label for="password">Repeat Passwort</label>
                         <input (keyup)="getRepeatPassword($event)" class="input" type="password" name="" id="password" placeholder="Füge erneut dein Passwort ein.">
-                        
+
                     </div>
                 </div>
 
                 <ng-template #elseBlock>
                     <div class="input-wrapper-red">
                         <label for="password">Passwort</label>
-                        <input  (keyup)="getPassword($event)" class="input-red" type="password" name="" id="password" placeholder="" >
-                        
+                        <input (keyup)="getPassword($event)" class="input-red" type="password" name="" id="password" placeholder="">
+
                     </div>
-                    
+
                     <div class="input-wrapper-red">
                         <label for="password">Repeat Passwort</label>
-                        <input  (keydown)="getRepeatPassword($event)" class="input-red" type="password" name="" id="password" >
+                        <input (keydown)="getRepeatPassword($event)" autocomplete="off" class="input-red" type="password" name="" id="password">
                         <p>{{passwordErrorMessage}}</p>
                     </div>
                 </ng-template>
 
-               
-                 <div class="agb-wrapper">
+
+                <div class="agb-wrapper">
                     <div class="hold-wrapper">
 
-                        <p>Du hast bereits ein Account? <span style="color: rgb(57, 78, 213);">Melde</span>  dich jetzt an.</p>
+                        <p>Du hast bereits ein Account? <span style="color: rgb(57, 78, 213);">Melde</span> dich jetzt an.</p>
                     </div>
-               
+
 
                     <div *ngIf="redCheck == false; else elseCheck" class="hold-wrapper-agb">
 
                         <input (change)="getCheckBoxValue($event)" type="checkbox" name="" id="">
-                        <p>Ich erkläre mich mit Allgemeine Geschäftsbedingungen, Datenschutzbestimmungen und Hausordnung   des Kinos einverstanden.</p>
+                        <p>Ich erkläre mich mit den allgemeinen Geschäftsbedingungen, Datenschutzbestimmungen und der Hausordnung des Kinos einverstanden.</p>
                     </div>
                 </div>
 
@@ -97,13 +97,13 @@
                     <div class="hold-wrapper-agb">
 
                         <input (change)="getCheckBoxValue($event)" type="checkbox" name="" id="">
-                        <p style="color: red;">Ich erkläre mich mit Allgemeine Geschäftsbedingungen, Datenschutzbestimmungen und Hausordnung   des Kinos einverstanden.</p>
+                        <p style="color: red;">Ich erkläre mich mit den allgemeinen Geschäftsbedingungen, Datenschutzbestimmungen und der Hausordnung des Kinos einverstanden.</p>
                     </div>
                 </ng-template>
 
             </div>
             <div class="confirm-wrapper">
-                <button (click)="post(); test()"  class="confirm-btn">Bestätigen</button>
+                <button (click)="post(); test(); checkPassword()" class="confirm-btn">Bestätigen</button>
             </div>
+        </div>
     </div>
-</div>

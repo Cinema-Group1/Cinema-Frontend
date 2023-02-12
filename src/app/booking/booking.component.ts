@@ -86,14 +86,10 @@ export class BookingComponent implements OnInit {
     console.log(this.selectedTarif.preis);
   }
 
-  getId(event: any) {
-    this.tarifId = event.target.value;
-    
-  }
 
-  increaseCounter() {
+  increaseCounter(tarifId: any) {
     for(let i = 0; i < this.tarif.length; i++) {
-      if(this.tarifId == this.tarif[i].id) {
+      if(tarifId == this.tarif[i].id) {
         console.log(this.tarif[i].counter);
         this.tarif[i].counter++;
         console.log(this.tarif[i].counter);
@@ -101,9 +97,9 @@ export class BookingComponent implements OnInit {
     }
   }
 
-  decreaseCounter() {
+  decreaseCounter(tarifId: any) {
     for(let i = 0; i < this.tarif.length; i++) {
-      if(this.tarifId == this.tarif[i].id) {
+      if(tarifId == this.tarif[i].id ) {
         console.log(this.tarif[i].counter);
         this.tarif[i].counter--;
         console.log(this.tarif[i].counter);

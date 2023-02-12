@@ -46,12 +46,12 @@
                         </div>
                     </div>
                     <div *ngFor="let temp of tarif; let i = index" class="ticket-wrapper">
-                       <h4>Wähle eine Anzahl über den Tarif: {{temp.bezeichnung}} </h4>
-                       <div class="counter-wrapper">
+                        <h4>Wähle eine Anzahl über den Tarif: {{temp.bezeichnung}} </h4>
+                        <div class="counter-wrapper">
 
-                           <button (click)="getId(temp.id); decreaseCounter()" >-</button>
-                           <p>{{temp.counter}}</p>
-                           <button (click)="getId(temp.id); increaseCounter()" >+</button>
+                            <button [disabled]="temp.counter <= 0" (click)="decreaseCounter(temp.id)">-</button>
+                            <p>{{temp.counter}}</p>
+                            <button (click)="increaseCounter(temp.id)">+</button>
                         </div>
                     </div>
                 </div>

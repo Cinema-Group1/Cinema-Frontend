@@ -11,7 +11,7 @@ import { threadId } from 'worker_threads';
 })
 export class CinemaSeatComponent implements OnInit {
 
-  readonly URL: string = 'https://cinema-backend-group1.azurewebsites.net/showing/all';
+  
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,6 +23,8 @@ export class CinemaSeatComponent implements OnInit {
   body: any = {};
   seats: any = [];
 
+  readonly URLShowing: string = 'https://cinema-backend-group1.azurewebsites.net/seat/showing:' 
+
   seatsN: any = [];
 
   seatsNumber: any = [];
@@ -33,40 +35,35 @@ export class CinemaSeatComponent implements OnInit {
   boockedSeats: any = [];
 
   filmId: any;
+  
+   
 
   private routeSub: Subscription = new Subscription;
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
 
+    this.routeSub = this.route.params.subscribe(params => {
 
+      this.filmId = params['id'];
 
-
+    })
     this.getPost();
   }
 
-  sendGet(): Observable<any> {
-    return this.http.get<any>(this.URL, this.httpOptions);
+  
+  sendGetShowing(): Observable<any> {
+    return this.http.get<any>(this.URLShowing + this.filmId , this.httpOptions);
+  }
+  sendGetSeatingPlan(): Observable<any> {
+    return this.http.get<any>(this.URLShowing, this.httpOptions);
   }
 
 
   getPost() {
-    this.sendGet().subscribe(data => {
-      for (let i = 0; i < data.length; i++) {
-        if (data[i].id === parseInt(this.filmId)) {
-
-          let seats = data[i].seatingPlan.seats;
-          this.sortAlgString(seats);
-          this.sortAlg(seats);
-          break;
-        }
-      }
-      for (let i = 0; i < 4; i++) {
-        this.seatsline[i] = this.seatsL[i];
-      }
-
-      for (let i = 0; i < 10; i++) {
-        this.seatsNumber[i] = data[i].seatNumber.number;
-      }
-
+    this.sendGetShowing().subscribe(data => {
+      this.seats = data;
+      console.log(this.seats);
+      this.sortAlgString(this.seats);
+      this.sortAlg(this.seats);
       // this.boockedSeats[i] = "" + this.seatsLine[i]+ this.seatsNumber[i]
 
 
@@ -81,9 +78,11 @@ export class CinemaSeatComponent implements OnInit {
       if (!this.seatsNumber.includes(seats[i].seatNumber.number)) {
 
         this.seatsNumber.push(seats[i].seatNumber.number)
+        console.log(seats[i].seatNumber.number);
+        console.log(this.seatsNumber);
       }
     }
-    this.seatsNumber.sort((a: number, b: number) => a - b);
+    this.seatsNumber.sort();
     console.log(this.seatsNumber);
   }
 
@@ -137,23 +136,23 @@ export class CinemaSeatComponent implements OnInit {
       }
     }
     console.log(this.body);
-    return this.http.post(this.URL, this.body, this.httpOptions);
+    return this.http.post(this.URLShowing + this.filmId, this.body, this.httpOptions);
   }
 
   ngOnInit(): void {
 
-    this.routeSub = this.route.params.subscribe(params => {
+    
 
-      this.filmId = params['id'];
 
-    })
 
   }
+
+  
 
   columns: number[] = this.seatsN;
   rows: string[] = this.seatsline;
 
-  reserved: string[] = ['A2', 'B3'];
+  reserved: string[] = [];
   selected: string[] = [];
 
   click = true;

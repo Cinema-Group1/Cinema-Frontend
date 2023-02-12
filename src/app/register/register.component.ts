@@ -111,12 +111,16 @@ export class RegisterComponent implements OnInit {
     
   }
     post() {
-      this.comparePassword();
-      this.checkPassword();
-      this.sendGet().subscribe(data => {
-  
-      });
-      this.router.navigate(['/log-in']);
+      if(this.comparePassword()) {
+        if(this.checkPassword()) {
+
+          this.sendGet().subscribe(data => {
+      
+          });
+          this.router.navigate(['/log-in']);
+        }
+      }
+      
 
     }
   comparePassword() {

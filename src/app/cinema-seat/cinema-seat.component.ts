@@ -25,6 +25,8 @@ export class CinemaSeatComponent implements OnInit {
 
   readonly URLShowing: string = 'https://cinema-backend-group1.azurewebsites.net/seat/showing:' 
   readonly URLBooking: string = 'https://cinema-backend-group1.azurewebsites.net/booking/add'
+  readonly URLUser: string = 'https://cinema-backend-group1.azurewebsites.net/user/all'
+  
 
   seatsN: any = [];
 
@@ -34,6 +36,7 @@ export class CinemaSeatComponent implements OnInit {
   seatsline: any = [];
 
   boockedSeats: any = [];
+  userIds: any = [];
 
   filmId: any;
   userId: any;
@@ -42,6 +45,7 @@ export class CinemaSeatComponent implements OnInit {
    
 
   private routeSub: Subscription = new Subscription;
+  URLReservedSeats: any;
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) {
 
     this.routeSub = this.route.params.subscribe(params => {
@@ -87,16 +91,12 @@ export class CinemaSeatComponent implements OnInit {
       if (!this.seatsNumber.includes(seats[i].seatNumber.number)) {
 
         this.seatsNumber.push(seats[i].seatNumber.number)
-        console.log(seats[i].seatNumber.number);
-        console.log(this.seatsNumber);
+        
       }
     }
     this.seatsNumber.sort();
-    console.log(this.seatsNumber);
+    
   }
-
-
-
 
 
 
@@ -110,7 +110,7 @@ export class CinemaSeatComponent implements OnInit {
       }
     }
     this.seatsLine.sort();
-    console.log(this.seatsLine);
+    
   }
 
   navigate() {
@@ -127,21 +127,76 @@ export class CinemaSeatComponent implements OnInit {
   }
 
   // A4
-  sendPost() {
+  sendPostBody() {
     
- 
     this.body = {
       "userId": this.userId,
       "showingId": this.filmId,
       "seatNumbers": this.selected          
     }
-  return this.http.post<any>(this.URLBooking, this.body, this.httpOptions)
+  return this.http.put<any>(this.URLBooking, this.body, this.httpOptions)
+
+  }
+
+  sendPost(){
+    this.sendPostBody().subscribe({});
+  }
+
+  getAllUserIds(){
+
+    
+
+    this.http.get<any>(this.URLUser, this.httpOptions).subscribe(data =>{
+
+      for(let i = 0 ;i<data.length; i++){
+
+        this.userIds.push(data[i].id)
+      }
+      this.getAllReservedSeats()
+    }
+      
+      )
+
+  }
+
+  getAllReservedSeats(){
+
+    
+
+    for(let i = 0; i < this.userIds.length; i++){
+
+      this.URLReservedSeats = "https://cinema-backend-group1.azurewebsites.net/booking/user:" + this.userIds[i]
+      this.http.get<any>(this.URLReservedSeats, this.httpOptions).subscribe(data =>{
+
+        for(let i = 0; i<data.length;i++){
+
+          
+          console.log(data[i].showing.id + " " + this.filmId);
+          if(data[i].showing.id == this.filmId){
+
+            console.log(data[i].seats)
+
+            for(let j = 0; j<data[i].seats.length;j++){
+
+              this.reserved.push(data[i].seats[j].seatNumber.line + data[i].seats[j].seatNumber.number.toString());
+            }
+          }
+        }
+        console.log(this.reserved);
+
+      },
+      )
+
+    }
+
+    
+
 
   }
 
   ngOnInit(): void {
-
     
+    this.getAllUserIds();
 
 
 
